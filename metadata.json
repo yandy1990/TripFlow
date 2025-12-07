@@ -1,0 +1,5 @@
+{
+  "name": "TripFlow",
+  "description": "A smart, collaborative trip planner with AI superpowers. Organize flights, hotels, and activities in a spreadsheet-style view.",
+  "requestFramePermissions": []
+}
