@@ -12,19 +12,19 @@ The output must be an array of itinerary items.
 Infer specific times if not provided.
 Map activities to one of these types: FLIGHT, HOTEL, ACTIVITY, FOOD, TRANSIT, NOTE.
 `;
-
 export const geminiService = {
   async generateItinerary(tripId: string, prompt: string, startDate: string) {
-    if (!process.env.API_KEY) {
+    // Lazy load keys to prevent crash on initial load if env is empty
+    const apiKey = process.env.API_KEY;
+
+    if (!apiKey) {
       console.warn("No API Key found for Gemini");
+      // Return empty or throw specific error handled by UI
       return [];
     }
 
-    // The API key must be obtained from process.env.API_KEY
-// In this browser-only setup, this comes from the window.process shim in index.html
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-    
+    // Initialize AI instance here, on demand
+    const ai = new GoogleGenAI({ apiKey });
 
     try {
       const response = await ai.models.generateContent({
