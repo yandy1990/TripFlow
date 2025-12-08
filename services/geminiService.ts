@@ -3,9 +3,7 @@ import { ActivityType } from '../types';
 
 declare var process: any;
 
-// The API key must be obtained from process.env.API_KEY
-// In this browser-only setup, this comes from the window.process shim in index.html
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
 
 const SYSTEM_PROMPT = `
 You are a world-class travel agent. 
@@ -21,6 +19,12 @@ export const geminiService = {
       console.warn("No API Key found for Gemini");
       return [];
     }
+
+    // The API key must be obtained from process.env.API_KEY
+// In this browser-only setup, this comes from the window.process shim in index.html
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+    
 
     try {
       const response = await ai.models.generateContent({
