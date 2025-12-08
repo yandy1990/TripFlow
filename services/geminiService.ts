@@ -1,6 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { ActivityType } from '../types';
 
+declare var process: any;
+
 // The API key must be obtained from process.env.API_KEY
 // In this browser-only setup, this comes from the window.process shim in index.html
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
